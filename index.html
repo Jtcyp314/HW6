@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+<meta charset = "utf-8">
+
+<head>
+<title>Art Gallery</title>
+
+<script src="jquery-3.4.1.min.js"></script>
+
+</head>
+
+
+
+<body style="text-align: center;">
+
+
+  <style type="text/css">
+.inner-border::-webkit-scrollbar { 
+                display: none; 
+            } 
+    img{padding: 10px;}
+
+    #lionDiv
+    { 
+      color: #ffffff;
+      display: inline;
+      height: 120px;
+      width: 120px;
+      background-color: #000000;
+      z-index: 10;
+      position: absolute;
+      display: inline;
+      display: none;
+      left:340px;
+      top: 75px;
+    }
+
+    #jumboDiv
+    {
+    color: #ffffff; 
+      display: inline;
+      height: 120px;
+      width: 120px;
+      background-color: #000000;
+      z-index: 10;
+      position: absolute;
+      display: inline;
+      display: none;
+      left:460px;
+      top: 75px;
+    }   
+
+    #balloonDiv
+    {
+    color: #ffffff; 
+      display: inline;
+      height: 120px;
+      width: 120px;
+      background-color: #000000;
+      z-index: 10;
+      position: absolute;
+      display: inline;
+      display: none;
+      left:580px;
+      top: 75px;
+    }
+
+
+    #boatDiv
+    {
+      color: #ffffff;
+      display: inline;
+      height: 120px;
+      width: 120px;
+      background-color: #000000;
+      z-index: 10;
+      position: absolute;
+      display: inline;
+      display: none;
+      left:700px;
+      top: 75px;
+    }
+
+    #tie-dyeDiv
+    {
+      color: #ffffff;
+      display: inline;
+      height: 120px;
+      width: 120px;
+      background-color: #000000;
+      z-index: 10;
+      position: absolute;
+      display: inline;
+      display: none;
+      left:820px;
+      top: 75px;
+    }
+
+
+
+  </style>
+
+
+  <h1>Hover over image to enlarge below</h1>
+
+
+    <script type="text/javascript">
+    class Art
+    {
+      constructor(name, price, link, id)
+      {
+        this.name = name;
+        this.price = price;
+        this.img = link;
+        this.id = id;
+      }
+
+      getLink()
+      {
+        return this.img;
+      }
+
+      getPrice()
+      {
+        return this.price;
+      }
+
+      getName()
+      {
+        return this.name;
+      }
+
+      getId()
+      {
+        return this.id;
+      }
+
+    }
+
+
+    function showImage(src, width, height, alt, id, name, price) 
+    { 
+      var img = document.createElement("img");
+      img.setAttribute("id", id)
+      img.setAttribute("class", "small")
+      img.src = src;
+      img.width = width;
+      img.height = height;
+      img.alt = alt;
+
+      var div = document.createElement("div");
+      div.setAttribute("id", id+"Div");
+      div.innerHTML = "Name: " + name + "</br></br>Price: " + price
+
+
+
+      document.body.appendChild(img);
+      document.body.appendChild(div)
+    }
+
+
+    var lion = new Art("Colorful Lion", 400, "lion.jpg", "lion");
+    var jumbo = new Art("Colorful Jumbo", 500, "colorful-jumbo.jpg", "jumbo");
+    var goneBalloon = new Art("Girl without Balloon", 1000, "gone-balloon.jpg", "balloon");
+    var boat = new Art("Boat in a Bay", 2500, "real-nice-boat.jpg", "boat");
+    var tieDye = new Art("Amalgamation of Colors", 3000, "tie-dye.jpg", "tie-dye");
+
+    var artArr = [lion, jumbo, goneBalloon, boat, tieDye];
+
+    for(i = 0; i < 5; i++)
+      showImage(artArr[i].getLink(), 100,100,0, artArr[i].getId(), artArr[i].getName(), artArr[i].getPrice());
+
+  </script>
+
+  <div id = "largerImage"></div>
+
+
+
+  <div id = jumboBox style = "text-align: center; position: absolute; height: 100px; width: 100px; background:#000000; display:none; z-index: 15;">
+    <p style = "color: #ffffff;">Price = price</p>
+  </div>
+
+
+
+
+
+  <script>
+  $(document).ready(function() {
+  });
+
+
+</script>
+
+
+
+<script>
+  $("img#jumbo").click(function()
+  {
+    setTimeout(
+      function() 
+      {
+        $("div#jumboDiv").hide();
+      }, 5000);
+        $("div#jumboDiv").show()
+  });
+
+
+  $("img#lion").click(function()
+  {
+    setTimeout(
+      function() 
+      {
+        $("div#lionDiv").hide();
+      }, 5000);
+        $("div#lionDiv").show()
+  });
+
+  $("img#balloon").click(function()
+  {
+    setTimeout(
+      function() 
+      {
+        $("div#balloonDiv").hide();
+      }, 5000);
+        $("div#balloonDiv").show()
+  });
+
+  $("img#boat").click(function()
+  {
+    setTimeout(
+      function() 
+      {
+        $("div#boatDiv").hide();
+      }, 5000);
+        $("div#boatDiv").show()
+  });
+
+  $("img#tie-dye").click(function()
+  {
+    setTimeout(
+      function() 
+      {
+        $("div#tie-dyeDiv").hide();
+      }, 5000);
+        $("div#tie-dyeDiv").show()
+  });
+
+
+</script>
+
+
+<script>
+  //personalize it for each element so a idfferent thing appreads
+  $("img#lion").mouseenter(function()
+  {
+
+    $("div#largerImage").html("<img src = \"" + artArr[0].getLink() + "\" style = \"height: 300px; width: 300px;\">").hide().fadeIn();
+  });
+
+  $("img#jumbo").mouseenter(function()
+  {
+
+    $("div#largerImage").html("<img src = \"" + "colorful-jumbo.jpg" + "\" style = \"height: 300px; width: 300px;\">").hide().fadeIn();
+  });
+
+  $("img#balloon").mouseenter(function()
+  {
+
+    $("div#largerImage").html("<img src = \"" + artArr[2].getLink() + "\" style = \"height: 300px; width: 300px;\">").hide().fadeIn();
+  });
+
+  $("img#boat").mouseenter(function()
+  {
+
+    $("div#largerImage").html("<img src = \"" + artArr[3].getLink() + "\" style = \"height: 300px; width: 300px;\">").hide().fadeIn();
+  });
+
+  $("img#tie-dye").mouseenter(function()
+  {
+
+    $("div#largerImage").html("<img src = \"" + artArr[4].getLink() + "\" style = \"height: 300px; width: 300px;\">").hide().fadeIn();
+  });
+
+
+  $("img").mouseleave(function() 
+  {
+    $("div#largerImage").html("");
+  });
+
+
+</script>
+
+
+</body>
+  
+
+
+</html>
